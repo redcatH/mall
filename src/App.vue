@@ -4,24 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <NavHeader></NavHeader>
-      <router-view></router-view>
-    <NavFooter></NavFooter>
-    
+    <router-view></router-view>
   </div>
 </template>
-
-<script>
-import NavHeader from '@/components/NavHeader.vue'
-import NavFooter from '@/components/NavFooter.vue'
-export default {
-  components:{
-    NavHeader,
-    NavFooter
-  }
-}
-</script>
-
 <style>
 #app4 {
   font-family: Avenir, Helvetica, Arial, sans-serif;
