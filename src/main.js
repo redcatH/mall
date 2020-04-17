@@ -7,16 +7,15 @@ import router from './router'
 
 
 
-const mock=true;
-if(mock)
-{
+const mock = false;
+if (mock) {
   require('./mock/api')
 }
 
 axios.defaults.baseURL = '/api'
 axios.defaults.timeout = 5000;
 //根据环境变量获取URL地址
-//axios.defaults.baseURL = env.baseURL;
+// axios.defaults.baseURL = env.baseURL;
 axios.interceptors.response.use(function (response) {
   let res = response.data;
   if (res.status == 0) {

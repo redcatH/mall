@@ -1,6 +1,6 @@
 <template>
     <div>
-        home nav footer
+        <!-- home nav footer -->
     </div>
 </template>
 <script>
