@@ -13,7 +13,8 @@
 //  import HelloWorld from '@/components/HelloWorld.vue'
 import NavHeader from "@/components/NavHeader.vue";
 import NavFooter from "@/components/NavFooter.vue";
-import jsonp from "jsonp";
+// import jsonp from "jsonp";
+import axios from 'axios'
 export default {
   name: "Home",
   components: {
@@ -23,15 +24,19 @@ export default {
   },
   data() {
     return {
-      age: 30
+      age: 30,
+      res:{}
     };
   },
   mounted() {
-    let url =
-      "https://www.easy-mock.com/mock/5e8fee48572a914be2e35422/example/query?name=5";
-    jsonp(url, (error, res) => {
-      console.log(res);
-    });
+    // let url =
+    //   "https://www.easy-mock.com/mock/5e8fee48572a914be2e35422/example/query?name=5";
+    // jsonp(url, (error, res) => {
+    //   console.log(res);
+    // });
+    axios.get('/user/login').then((res)=>{
+      this.res=res;
+    })
   }
 };
 </script>
