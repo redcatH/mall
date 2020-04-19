@@ -14,7 +14,7 @@
 import NavHeader from "@/components/NavHeader.vue";
 import NavFooter from "@/components/NavFooter.vue";
 // import jsonp from "jsonp";
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: "Home",
   components: {
@@ -34,9 +34,9 @@ export default {
     // jsonp(url, (error, res) => {
     //   console.log(res);
     // });
-    axios.get('/user/login').then((res)=>{
-      this.res=res;
-    })
+    // axios.get('/user/login').then((res)=>{
+    //   this.res=res;
+    // })
   }
 };
 </script>

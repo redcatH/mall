@@ -146,6 +146,8 @@
             }
           }
           .children {
+            z-index: 99;
+            background-color: #ffffff;
             transition: opacity 0.2s;
             position: absolute;
             overflow: hidden;
