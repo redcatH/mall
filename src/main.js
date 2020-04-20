@@ -26,6 +26,7 @@ axios.interceptors.response.use(function (response) {
     window.location.href = "/#/login";
   } else {
     alert(res.msg);
+    return Promise.reject(res); //抛出reject 不会进入then
   }
 });
 
