@@ -34,7 +34,7 @@
                   <a v-bind:href="'/#/product/'+item.id" target="_blank">
                     <div class="pro-img">
                       <img
-                        :src="item.mainImage"
+                        v-lazy="item.mainImage"
                         :alt="item.subtitle"
                       />
                     </div>
@@ -146,7 +146,7 @@
             }
           }
           .children {
-            z-index: 99;
+            z-index: 9;
             background-color: #ffffff;
             transition: opacity 0.2s;
             position: absolute;
