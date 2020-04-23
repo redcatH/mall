@@ -175,7 +175,7 @@
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
       </div>
-      <div class="ads">
+      <div class="alist">
         <a :href="'/#/product/'+item.id" v-for="(item,index) in adsList" :key="index">
           <img v-lazy="item.img" :alt="item.text" />
         </a>
@@ -238,22 +238,22 @@ export default {
       adsList: [
         {
           id: "33",
-          img: "/imgs/ads/ads-1.png",
+          img: "/imgs/phone/1.png",
           text: null
         },
         {
           id: "43",
-          img: "/imgs/ads/ads-2.jpg",
+          img: "/imgs/phone/2.jpg",
           text: "小米"
         },
         {
           id: "44",
-          img: "/imgs/ads/ads-3.png",
+          img: "/imgs/phone/3.png",
           text: "小米"
         },
         {
           id: "45",
-          img: "/imgs/ads/ads-4.jpg",
+          img: "/imgs/phone/4.jpg",
           text: "小米"
         }
       ],
@@ -442,7 +442,7 @@ export default {
         }
       }
     }
-    .ads {
+    .alist {
       margin-top: 13px;
       margin-bottom: 30px;
       @include flex();

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import store from './../store/index'
 import Home from '../views/Home.vue'
 import Index from '../views/index.vue'
 import Detail from '../views/detail.vue'
@@ -9,6 +10,8 @@ import Order from '../views/order.vue'
 import OrderConfirm from '../views/orderConfirm.vue'
 import OrderList from '../views/orderList.vue'
 import OrderPay from '../views/orderPay.vue'
+import Login from '../views/login.vue'
+
 Vue.use(VueRouter)
 
 const routes = [{
@@ -38,6 +41,10 @@ const routes = [{
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/order',
@@ -73,5 +80,9 @@ const routes = [{
 const router = new VueRouter({
   routes
 })
+// eslint-disable-next-line no-unused-vars
+// router.beforeEach((to, from) => {
+//   //  console.log(store.state.userName);
+// })
 
 export default router

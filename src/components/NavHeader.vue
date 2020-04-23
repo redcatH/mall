@@ -10,12 +10,13 @@
           <a href="javascript:;"></a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;" v-if="username">{{username}}</a>
+          <a href="javascript:;" v-if="userName">{{userName}}</a>
           <a href="javascript:;" @click="goToLogin" v-else>登录</a>
-          <a href="javascript:;" v-if="!username">注册</a>
-          <a href="javascript:;" v-if="username">我的订单</a>
-          <a href="javascript:;" v-on:click="goToCart" class="my-cart"> 
-            <span class="icon-cart"></span>购物车
+          <a href="javascript:;" v-if="!userName">注册</a>
+          <a href="javascript:;" v-if="userName">我的订单</a>
+          <a href="javascript:;" v-on:click="goToCart" class="my-cart">
+            <span class="icon-cart"></span>
+            购物车{{'('+cartCount+')'}}
           </a>
         </div>
       </div>
@@ -33,10 +34,7 @@
                 <li class="product" v-for="(item,index) in phoneList" :key="index">
                   <a v-bind:href="'/#/product/'+item.id" target="_blank">
                     <div class="pro-img">
-                      <img
-                        v-lazy="item.mainImage"
-                        :alt="item.subtitle"
-                      />
+                      <img v-lazy="item.mainImage" :alt="item.subtitle" />
                     </div>
                     <div class="pro-name">{{item.name}}</div>
                     <div class="pro-price">{{item.price | currency}}</div>
@@ -67,7 +65,6 @@
 
 
 <style lang="scss">
-@import "./../assets/scss/base.scss";
 @import "./../assets/scss/mixin.scss";
 @import "./../assets/scss/config.scss";
 .header {
@@ -83,6 +80,7 @@
         display: inline-block;
       }
       .my-cart {
+        margin-right: 0;
         width: 110px;
         background-color: #ff6600;
         text-align: center;
@@ -92,6 +90,8 @@
           margin-right: 4px;
         }
       }
+      
+
     }
   }
 
@@ -100,30 +100,6 @@
       position: relative;
       height: 112px;
       @include flex();
-      .header-logo {
-        display: inline-block;
-        width: 55px;
-        height: 55px;
-        background: #ff6600;
-        a {
-          display: inline-block;
-          width: 110px;
-          height: 55px;
-          &:before {
-            content: " ";
-            @include bgImg(55px, 55px, "/imgs/mi-logo.png", 55px);
-            transition: margin 0.2s;
-          }
-          &:after {
-            content: " ";
-            @include bgImg(55px, 55px, "/imgs/mi-home.png", 55px);
-          }
-          &:hover::before {
-            margin-left: -55px;
-            transition: margin 0.2s;
-          }
-        }
-      }
       .header-menu {
         width: 643px;
         display: inline-block;
@@ -146,7 +122,7 @@
             }
           }
           .children {
-            z-index: 9;
+            z-index: 11;
             background-color: #ffffff;
             transition: opacity 0.2s;
             position: absolute;
@@ -229,44 +205,52 @@
 }
 </style>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "navheader",
   data() {
     return {
-      username: "",
-      phoneList: [],
+      phoneList: []
     };
   },
-  mounted() {
-      this.getProductList();
+  computed: {
+    /*username(){
+      return this.$store.state.userName;
+    },
+    cartCount(){
+      return this.$store.state.cartCount;
+    }*/
+    ...mapState(["userName", "cartCount"])
   },
-  filters:{
-    currency(val){
-      if(!val)
-        return '¥0.00'
-      return "¥"+val.toFixed(2)+"元起";
-
+  mounted() {
+    this.getProductList();
+  },
+  filters: {
+    currency(val) {
+      if (!val) return "¥0.00";
+      return "¥" + val.toFixed(2) + "元起";
     }
   },
   methods: {
     getProductList() {
-        this.axios.get('/products',{
-            params:{
-                categoryId:'100012',
-                // pageSize:6
-            }
-        }).then((res)=>{
-           if(res.list.length>6)
-           {
-             this.phoneList=res.list.slice(0,6);
-           }
+      this.axios
+        .get("/products", {
+          params: {
+            categoryId: "100012"
+            // pageSize:6
+          }
+        })
+        .then(res => {
+          if (res.list.length > 6) {
+            this.phoneList = res.list.slice(0, 6);
+          }
         });
     },
-    goToCart(){
-      this.$router.push('/cart');
+    goToCart() {
+      this.$router.push("/cart");
     },
-    goToLogin(){
-      this.$router.push('/login');
+    goToLogin() {
+      this.$router.push("/login");
     }
   }
 };
